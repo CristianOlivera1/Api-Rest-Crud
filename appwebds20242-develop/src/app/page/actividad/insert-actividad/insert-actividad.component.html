@@ -1,0 +1,51 @@
+<div class="container" style="margin-top: 7px;">
+  <div class="card bg-dark text-white">
+    <div class="card-header">
+      <h5>Registrar actividad</h5>
+    </div>
+    <div class="card-body">
+      <form [formGroup]="frmActividadInsert">
+        <div class="row">
+          <div class="col-md-3 mb-3">
+            <label for="actividad" class="form-label">Nombre</label>
+            <input type="text" formControlName="actividad" class="form-control" id="actividad"
+              placeholder="Obligatorio">
+            <div *ngIf="actividadFb.touched && actividadFb.errors?.['required']" class="divError">Este campo es
+              requerido.</div>
+          </div>
+          <div class="col-md-3 mb-3">
+            <label for="fechaInicio" class="form-label">Fecha de Inicio</label>
+            <input type="datetime-local" formControlName="fechaInicio" class="form-control" id="fechaInicio"
+              placeholder="Obligatorio">
+            <div *ngIf="fechaInicioFb.touched && fechaInicioFb.errors?.['required']" class="divError">Este campo es
+              requerido.</div>
+          </div>
+          <div class="col-md-3 mb-3">
+            <label for="fechaFin" class="form-label">Fecha de Fin</label>
+            <input type="datetime-local" formControlName="fechaFin" class="form-control" id="fechaFin"
+              placeholder="Obligatorio">
+            <div *ngIf="fechaFinFb.touched && fechaFinFb.errors?.['required']" class="divError">Este campo es requerido.
+            </div>
+          </div>
+
+          <div class="col-md-3 mb-3">
+            <label for="estado" class="form-label">Estado</label>
+            <select formControlName="estado" class="form-select" id="estado">
+              <option value="true">Activo</option>
+              <option value="false">Inactivo</option>
+            </select>
+            <div *ngIf="estadoFb.touched && estadoFb.errors?.['required']" class="divError">Este campo es requerido.
+            </div>
+          </div>
+
+        </div>
+        <hr>
+        <div class="d-flex justify-content-end">
+          <button type="submit" class="btn btn-primary" (click)="save()">Registrar datos</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<app-notify [type]="typeResponse" [listMessage]="listMessageResponse"></app-notify>

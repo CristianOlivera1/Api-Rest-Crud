@@ -1,0 +1,40 @@
+<div class="container" style="margin-top: 7px;">
+    <div class="card">
+      <div class="card-header">
+        <h5>Actualizar Producto</h5>
+      </div>
+      <div class="card-body">
+        <form [formGroup]="updateForm" (ngSubmit)="onUpdate()">
+          <div class="row">
+            <div class="col-md-3 mb-3">
+              <label for="title" class="form-label">Titulo</label>
+              <input type="text" class="form-control" id="title" formControlName="title" placeholder="Obligatorio">
+            </div>
+            <div class="col-md-3 mb-3">
+              <label for="price" class="form-label">Precio</label>
+              <input type="number" class="form-control" id="price" formControlName="price" placeholder="Obligatorio">
+            </div>
+            <div class="col-md-3 mb-3">
+              <label for="description" class="form-label">Descripción</label>
+              <input type="text" class="form-control" id="description" formControlName="description" placeholder="Obligatorio">
+            </div>
+            <div class="col-md-3 mb-3">
+              <label for="categoryId" class="form-label">Id categoria</label>
+              <input type="number" class="form-control" id="categoryId" formControlName="categoryId" placeholder="Obligatorio">
+            </div>
+            <div class="col-md-3 mb-3">
+              <label for="images" class="form-label">Imagen (URL)</label>
+              <input type="text" class="form-control" id="images" formControlName="images" placeholder="Obligatorio">
+              <div *ngIf="updateForm.get('images')?.invalid && updateForm.get('images')?.touched" class="text-danger">
+                URL inválida
+              </div>
+            </div>
+          </div>
+          <hr>
+          <div class="d-flex justify-content-end">
+            <button type="submit" class="btn btn-dark">Guardar cambios</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>

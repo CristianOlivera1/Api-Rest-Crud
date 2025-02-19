@@ -1,0 +1,20 @@
+<div class="container d-flex justify-content-center align-items-center" style="height: 82vh;">
+  <form (ngSubmit)="login()" class="p-4 p-md-5 border rounded-3 bg-light shadow-lg">
+    <span class="badge bg-secondary">CLIENTE</span>
+    <h1 class="mb-4 text-center">INICIO DE SESIÓN
+    </h1>
+    <div class="form-group mb-3">
+      <label for="email" class="form-label">Email:</label>
+      <input type="email" class="form-control" id="email" [(ngModel)]="email" name="email" required>
+    </div>
+    <div class="form-group mb-3">
+      <label for="dni" class="form-label">Contraseña:</label>
+      <input type="password" class="form-control" id="dni" [(ngModel)]="dni" name="dni" required>
+    </div>
+    <div *ngIf="errorMessage" class="alert alert-danger mt-2">
+      {{ errorMessage }}
+    </div>
+    <button type="submit" class="btn btn-dark w-100 mt-3">Iniciar Sesión</button>
+  </form>
+</div>
+<app-notify [type]="typeResponse" [listMessage]="listMessageResponse"></app-notify>

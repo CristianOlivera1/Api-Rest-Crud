@@ -1,0 +1,15 @@
+.flex {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: nowrap;
+}
+
+.btn-delete{
+    background-color: rgba(219, 78, 78, 0.212);
+}
+
+.btn-edit{
+    background-color: rgba(76, 223, 46, 0.315);
+}

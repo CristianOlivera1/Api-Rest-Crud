@@ -1,0 +1,37 @@
+<div class="container" style="margin-top: 7px;">
+    <div class="card">
+      <div class="card-header">
+        <h5>Actualizar categoria</h5>
+      </div>
+      <div class="card-body">
+        <form [formGroup]="updateForm">
+          <div class="row">
+            <div class="col-md-3 mb-3">
+              <label for="name" class="form-label">Nombre</label>
+              <input type="text" formControlName="name" class="form-control" id="name" placeholder="Obligatorio">
+              <div *ngIf="(updateForm.controls['name'].touched || updateForm.controls['name'].dirty) && updateForm.controls['name'].errors && updateForm.controls['name'].hasError('required')" class="divError">Este campo es requerido.</div>
+            </div>
+            <div class="col-md-3 mb-3">
+              <label for="description" class="form-label">Descripcion</label>
+              <input type="text" formControlName="description" class="form-control" id="description" placeholder="Obligatorio">
+              <div *ngIf="(updateForm.controls['description'].touched || updateForm.controls['description'].dirty) && updateForm.controls['description'].errors && updateForm.controls['description'].hasError('required')" class="divError">Este campo es requerido.</div>
+            </div>
+            <div class="col-md-3 mb-3">
+              <label for="state" class="form-label">Categoria</label>
+              <select formControlName="state" class="form-select" id="state">
+                <option value="1">Activo</option>
+                <option value="0">Inactivo</option>
+              </select>
+              <div *ngIf="(updateForm.controls['state'].touched || updateForm.controls['state'].dirty) && updateForm.controls['state'].errors && updateForm.controls['state'].hasError('required')" class="divError">Este campo es requerido.</div>
+            </div>
+          </div>
+          <hr>
+          <div class="d-flex justify-content-end">
+            <button type="submit" class="btn btn-primary" (click)="onUpdate()">Actualizar datos</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <app-notify [type]="typeResponse" [listMessage]="listMessageResponse"></app-notify>

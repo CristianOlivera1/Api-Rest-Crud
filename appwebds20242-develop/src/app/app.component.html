@@ -1,0 +1,103 @@
+<nav *ngIf="existsLogin()" class="navbar navbar-expand-lg navbar-dark bg-dark mb-5" style="box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.7);">
+  <div class="container">
+    <a class="navbar-brand" href="/" style="color: #fff;">
+      <i>
+        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 20 20">
+          <g fill="none">
+            <path fill="url(#fluentColorCode200)"
+              d="M12.859 2.567a1 1 0 0 1 .574 1.292l-5 13a1 1 0 1 1-1.866-.718l5-13a1 1 0 0 1 1.292-.574" />
+            <path fill="url(#fluentColorCode201)"
+              d="M6.15 5.74a1 1 0 0 1 .11 1.41L3.816 10l2.442 2.85a1 1 0 0 1-1.518 1.3l-3-3.5a1 1 0 0 1 0-1.3l3-3.5a1 1 0 0 1 1.41-.11" />
+            <path fill="url(#fluentColorCode202)"
+              d="M13.74 7.15a1 1 0 0 1 1.52-1.3l3 3.5a1 1 0 0 1 0 1.3l-3 3.5a1 1 0 0 1-1.52-1.3L16.184 10z" />
+            <defs>
+              <linearGradient id="fluentColorCode200" x1="2" x2="19" y1="1.5" y2="18" gradientUnits="userSpaceOnUse">
+                <stop stop-color="#c76efb" />
+                <stop offset="1" stop-color="#8b52f4" />
+              </linearGradient>
+              <linearGradient id="fluentColorCode201" x1="2" x2="19" y1="1.5" y2="18" gradientUnits="userSpaceOnUse">
+                <stop stop-color="#c76efb" />
+                <stop offset="1" stop-color="#8b52f4" />
+              </linearGradient>
+              <linearGradient id="fluentColorCode202" x1="2" x2="19" y1="1.5" y2="18" gradientUnits="userSpaceOnUse">
+                <stop stop-color="#c76efb" />
+                <stop offset="1" stop-color="#8b52f4" />
+              </linearGradient>
+            </defs>
+          </g>
+        </svg>
+      </i> Desarrollo de Software II
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="/" style="color: #fff;">Inicio</a>
+        </li>
+        <li class="nav-item dropdown ms-4">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownModules" role="button"
+            data-bs-toggle="dropdown" aria-expanded="false" style="color: #fff;">
+            Módulos
+          </a>
+          <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDropdownModules">
+            <li><a class="dropdown-item" href="product/insert">Registrar producto</a></li>
+            <li><a class="dropdown-item" href="product/getall">Listar producto</a></li>
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+            <li><a class="dropdown-item" href="category/insert">Registrar categoria</a></li>
+            <li><a class="dropdown-item" href="category/getall">Listar categoria</a></li>
+            <li>
+                <hr class="dropdown-divider">
+            </li>
+            <li><a class="dropdown-item" href="client/insert">Registrar cliente</a></li>
+            <li><a class="dropdown-item" href="client/getall">Listar clientes</a></li>
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+            <li><a class="dropdown-item" href="user/insert">Registrar usuarios</a></li>
+            <li><a class="dropdown-item" href="user/getall">Listar usuarios</a></li>
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+            <li><a class="dropdown-item" href="actividad/insert">Registrar actividad</a></li>
+            <li><a class="dropdown-item" href="actividad/getall">Listar actividad</a></li>
+          </ul>
+        </li>
+        <li class="nav-item dropdown ms-4">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownApi" role="button" data-bs-toggle="dropdown"
+            aria-expanded="false" style="color: #fff;">
+            Api web
+          </a>
+          <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDropdownApi">
+            <li><a class="dropdown-item" href="platzi/insert">Registrar datos platzi</a></li>
+            <li><a class="dropdown-item" href="platzi/getall">Listar datos platzi</a></li>
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+            <li><a class="dropdown-item" href="pokeapi/get">Api marvel</a></li>
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+            <li><a class="dropdown-item" href="auth/getall">Listar productos fakestore</a></li>
+          </ul>
+        </li>
+        <li class="nav-item dropdown ms-5">
+          <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" id="navbarDropdownProfile" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="color: #fff;">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 15 15"><path fill="currentColor" fill-rule="evenodd" d="M.877 7.5a6.623 6.623 0 1 1 13.246 0a6.623 6.623 0 0 1-13.246 0M7.5 1.827a5.673 5.673 0 0 0-4.193 9.494A4.97 4.97 0 0 1 7.5 9.025a4.97 4.97 0 0 1 4.193 2.296A5.673 5.673 0 0 0 7.5 1.827m3.482 10.152A4.02 4.02 0 0 0 7.5 9.975a4.02 4.02 0 0 0-3.482 2.004A5.65 5.65 0 0 0 7.5 13.173c1.312 0 2.52-.446 3.482-1.194M5.15 6.505a2.35 2.35 0 1 1 4.7 0a2.35 2.35 0 0 1-4.7 0m2.35-1.4a1.4 1.4 0 1 0 0 2.8a1.4 1.4 0 0 0 0-2.8" clip-rule="evenodd"/></svg> 
+            &nbsp; {{userName}}
+          </a>
+          <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-end" aria-labelledby="navbarDropdownProfile">
+            <li><a class="dropdown-item" href="#" (click)="logout()">Cerrar sesión</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+<section id="sectionBody">
+  <router-outlet></router-outlet>
+</section>

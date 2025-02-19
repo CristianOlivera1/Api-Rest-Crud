@@ -1,0 +1,8 @@
+th{
+    width: 100px;
+    max-width: 100px;
+}
+tr td{
+    width: 200px;
+    max-width: 100px;
+}

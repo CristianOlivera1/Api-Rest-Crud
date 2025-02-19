@@ -1,0 +1,46 @@
+<a href="https://github.com/CristianOlivera1" target="_blank" class="github-corner" aria-label="View source on Github" title="https://github.com/CristianOlivera1">
+  <svg viewBox="0 0 250 250" aria-hidden="true">
+    <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+    <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+    <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path>
+  </svg>
+</a>
+<div class="div">
+  <div class="container d-flex justify-content-center align-items-center" style="height: 82vh;">
+    <form (ngSubmit)="login()" class="p-4 p-md-5 border rounded-3 bg-light shadow-light">
+      <span class="badge bg-secondary">USUARIO</span>
+
+      <h1 class="mb-4 text-center">INICIO DE SESIÓN</h1>
+      <div class="form-group mb-3">
+        <label for="nameUser" class="form-label">Usuario:</label>
+        <input type="text" class="form-control" id="nameUser" [(ngModel)]="nameUser" name="nameUser" required>
+      </div>
+
+      <div class="form-group mb-3">
+        <label for="password" class="form-label">Contraseña:</label>
+        <div class="input-group">
+          <input [type]="passwordFieldType" class="form-control input-with-icon" id="password" [(ngModel)]="password" name="password" required>
+          <i *ngIf="passwordFieldType === 'password'" class="toggle-icon" (click)="togglePasswordVisibility()">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
+              <g fill="none" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" d="M9 4.46A9.8 9.8 0 0 1 12 4c4.182 0 7.028 2.5 8.725 4.704C21.575 9.81 22 10.361 22 12c0 1.64-.425 2.191-1.275 3.296C19.028 17.5 16.182 20 12 20s-7.028-2.5-8.725-4.704C2.425 14.192 2 13.639 2 12c0-1.64.425-2.191 1.275-3.296A14.5 14.5 0 0 1 5 6.821"/>
+                <path d="M15 12a3 3 0 1 1-6 0a3 3 0 0 1 6 0Z"/>
+              </g>
+            </svg>
+          </i>
+          <i *ngIf="passwordFieldType !== 'password'" class="toggle-icon" (click)="togglePasswordVisibility()">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 16 16">
+              <path fill="currentColor" fill-rule="evenodd" d="M3.03 1.97a.75.75 0 0 0-1.06 1.06l.83.83A8.2 8.2 0 0 0 .5 6.876l-.26.585a1.33 1.33 0 0 0 0 1.079l.26.585a8.21 8.21 0 0 0 11.434 3.87l1.036 1.035a.75.75 0 1 0 1.06-1.06zm7.788 9.908l-1.294-1.293a3 3 0 0 1-4.109-4.109L3.866 4.927A6.7 6.7 0 0 0 1.87 7.486L1.641 8l.23.515a6.71 6.71 0 0 0 8.947 3.363M6.55 7.611A1.502 1.502 0 0 0 8.389 9.45zm1.658-2.604l2.784 2.784a3 3 0 0 0-2.784-2.784m5.92 3.508a6.7 6.7 0 0 1-.915 1.496l1.065 1.066A8.2 8.2 0 0 0 15.5 9.125l.26-.585a1.33 1.33 0 0 0 0-1.08l-.26-.584A8.21 8.21 0 0 0 5.572 2.37L6.81 3.61a6.71 6.71 0 0 1 7.32 3.877l.228.514z" clip-rule="evenodd"/>
+            </svg>
+          </i>
+        </div>
+      </div>
+      
+      <div *ngIf="errorMessage" class="alert alert-danger mt-3">
+        {{ errorMessage }}
+      </div> 
+      <button type="submit" class="btn btn-dark w-100 mt-4">Iniciar Sesión</button>
+    </form>
+  </div>
+</div>
+<app-notify [type]="typeResponse" [listMessage]="listMessageResponse"></app-notify>

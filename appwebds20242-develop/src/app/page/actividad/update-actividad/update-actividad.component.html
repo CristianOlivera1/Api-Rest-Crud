@@ -1,0 +1,46 @@
+<div class="container" style="margin-top: 7px;">
+    <div class="card">
+      <div class="card-header">
+        <h5>Actualizar actividad</h5>
+      </div>
+      <div class="card-body">
+        <form [formGroup]="updateForm">
+          <div class="row">
+            <div class="col-md-3 mb-3">
+              <label for="actividad" class="form-label">Actividad</label>
+              <input type="text" formControlName="actividad" class="form-control" id="actividad" placeholder="Obligatorio">
+              <div *ngIf="(updateForm.controls['actividad'].touched || updateForm.controls['actividad'].dirty) && updateForm.controls['actividad'].errors && updateForm.controls['actividad'].hasError('required')" class="divError">Este campo es requerido.</div>
+            </div>
+
+            <div class="col-md-3 mb-3">
+              <label for="description" class="form-label">Fecha inicio</label>
+              <input type="datetime-local" formControlName="fechaInicio" class="form-control" id="fechaInicio" placeholder="Obligatorio">
+              <div *ngIf="(updateForm.controls['fechaInicio'].touched || updateForm.controls['fechaInicio'].dirty) && updateForm.controls['fechaInicio'].errors && updateForm.controls['fechaInicio'].hasError('required')" class="divError">Este campo es requerido.</div>
+            </div>
+
+            <div class="col-md-3 mb-3">
+                <label for="description" class="form-label">Fecha fin</label>
+                <input type="datetime-local" formControlName="fechaFin" class="form-control" id="fechaFin" placeholder="Obligatorio">
+                <div *ngIf="(updateForm.controls['fechaInicio'].touched || updateForm.controls['fechaFin'].dirty) && updateForm.controls['fechaFin'].errors && updateForm.controls['fechaFin'].hasError('required')" class="divError">Este campo es requerido.</div>
+              </div>
+              
+
+            <div class="col-md-3 mb-3">
+              <label for="state" class="form-label">Estado</label>
+              <select formControlName="estado" class="form-select" id="estado">
+                <option value="1">Activo</option>
+                <option value="0">Inactivo</option>
+              </select>
+              <div *ngIf="(updateForm.controls['estado'].touched || updateForm.controls['estado'].dirty) && updateForm.controls['estado'].errors && updateForm.controls['estado'].hasError('required')" class="divError">Este campo es requerido.</div>
+            </div>
+          </div>
+          <hr>
+          <div class="d-flex justify-content-end">
+            <button type="submit" class="btn btn-primary" (click)="onUpdate()">Actualizar datos</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <app-notify [type]="typeResponse" [listMessage]="listMessageResponse"></app-notify>

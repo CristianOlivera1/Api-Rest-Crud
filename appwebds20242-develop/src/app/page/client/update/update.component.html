@@ -1,0 +1,64 @@
+<div class="container" style="margin-top: 7px;">
+    <div class="card">
+      <div class="card-header">
+        <h5>Actualizar cliente</h5>
+      </div>
+      <div class="card-body">
+        <form [formGroup]="updateForm">
+          <div class="row">
+            <div class="col-md-3 mb-3">
+              <label for="firstName" class="form-label">Nombre</label>
+              <input type="text" formControlName="firstName" class="form-control" id="firstName" placeholder="Obligatorio">
+              <div *ngIf="updateForm.controls['firstName'].touched && updateForm.controls['firstName'].invalid" class="divError">Este campo es requerido.</div>
+            </div>
+            <div class="col-md-3 mb-3">
+              <label for="surName" class="form-label">Apellido</label>
+              <input type="text" formControlName="surName" class="form-control" id="surName" placeholder="Obligatorio">
+              <div *ngIf="updateForm.controls['surName'].touched && updateForm.controls['surName'].invalid" class="divError">Este campo es requerido.</div>
+            </div>
+            <div class="col-md-3 mb-3">
+              <label for="dni" class="form-label">DNI</label>
+              <input type="number" formControlName="dni" class="form-control" id="dni" placeholder="Obligatorio">
+              <div *ngIf="updateForm.controls['dni'].touched && updateForm.controls['dni'].invalid" class="divError">Este campo es requerido.</div>
+            </div>
+            <div class="col-md-3 mb-3">
+              <label for="gender" class="form-label">Género</label>
+              <select formControlName="gender" class="form-select" id="gender">
+                <option value="true">Masculino</option>
+                <option value="false">Femenino</option>
+              </select>
+              <div *ngIf="updateForm.controls['gender'].touched && updateForm.controls['gender'].invalid" class="divError">Este campo es requerido.</div>
+            </div>
+            <div class="col-md-3 mb-3">
+              <label for="phone" class="form-label">Teléfono</label>
+              <input type="number" formControlName="phone" class="form-control" id="phone" placeholder="Obligatorio">
+              <div *ngIf="updateForm.controls['phone'].touched && updateForm.controls['phone'].invalid" class="divError">Este campo es requerido.</div>
+            </div>
+            <div class="col-md-3 mb-3">
+              <label for="address" class="form-label">Dirección</label>
+              <input type="text" formControlName="address" class="form-control" id="address" placeholder="Obligatorio">
+              <div *ngIf="updateForm.controls['address'].touched && updateForm.controls['address'].invalid" class="divError">Este campo es requerido.</div>
+            </div>
+            
+            <div class="col-md-3 mb-3">
+              <label for="birthDate" class="form-label">Fecha de Nacimiento</label>
+              <input type="date" formControlName="birthDate" class="form-control" id="birthDate" placeholder="Obligatorio" value="2018-07-22">
+              <div *ngIf="updateForm.controls['birthDate'].touched && updateForm.controls['birthDate'].invalid" class="divError">Este campo es requerido.</div>
+            </div>
+            
+            <div class="col-md-3 mb-3">
+              <label for="email" class="form-label">Correo Electrónico</label>
+              <input type="email" formControlName="email" class="form-control" id="email" placeholder="Obligatorio">
+              <div *ngIf="updateForm.controls['email'].touched && updateForm.controls['email'].invalid" class="divError">Este campo es requerido y debe ser un email válido.</div>
+            </div>
+          </div>
+          <hr>
+          <div class="d-flex justify-content-end">
+            <button type="submit" class="btn btn-primary" (click)="onUpdate()">Actualizar datos</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  
+  <app-notify [type]="typeResponse" [listMessage]="listMessageResponse"></app-notify>

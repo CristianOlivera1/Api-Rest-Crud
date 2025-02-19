@@ -1,0 +1,178 @@
+<div class="container pt-0">
+    <div class="d-flex justify-content-center align-items-center mt-5 mb-5">
+        <div class="row justify-content-center align-items-center w-100 primero p-4" style="border: 1px solid #ddd;">
+            <div class="col-md-4">
+                <label for="categorySelect">Categorías:</label>
+                <select id="categorySelect" class="form-select" [(ngModel)]="selectedCategory"
+                    (change)="filterProducts()" style="border: none; border-bottom: 2px solid #ddd;">
+                    <option *ngFor="let category of categories" [value]="category">{{ category }}</option>
+                </select>
+            </div>
+            <div class="col-md-4 mt-4">
+                <input type="text" id="searchInput" class="form-control" placeholder="Nombre..."
+                    [(ngModel)]="searchQuery" (input)="filterProducts()"
+                    style="border: none; border-bottom: 2px solid #ddd;">
+            </div>
+            <div class="col-md-4">
+                <button class="btn btn-dark w-100 mt-4" data-bs-toggle="modal" data-bs-target="#addProductModal">Agregar
+                    nuevo</button>
+            </div>
+        </div>
+    </div>
+</div>
+<br>
+<div class="container pt-3" style="border: 1px solid #ddd;">
+    <div class="row">
+        <div *ngFor="let product of filteredProducts" class="col-md-3 mb-4">
+            <div class="card pt-3 position-relative" (click)="getProductDetails(product.id)" data-bs-toggle="modal"
+                data-bs-target="#productDetailsModal">
+                <img [src]="product.image" class="card-img-top" alt="{{ product.title }}">
+                <div class="card-body pt-3">
+                    <h5 class="card-title">{{ product.title }}</h5>
+                    <div class="price-circle position-absolute top-0 end-0 text-white"
+                        style="border-radius: 50%; background-color: #022432; padding: 13px 0px; width: 40px; height: 40px; font-size: 14px;">
+                        {{ product.price | currency }}
+                    </div>
+                    <!--             
+            <button class="btn btn-success w-100" (click)="getProductDetails(selectedProduct.id)" data-bs-toggle="modal" data-bs-target="#editProductModal">Editar</button> -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal para ver detalles del producto -->
+<div class="modal fade" id="productDetailsModal" tabindex="-1" aria-labelledby="productDetailsModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" style="margin-left: 100px;">
+        <div class="modal-content" style="width: 1100px; margin-right: -100px; background-color: #F0F0F0;">
+            <div class="modal-header">
+                <h5 class="modal-title azul" id="productDetailsModalLabel">Detalles del Producto</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body" *ngIf="selectedProduct">
+                <div class="row">
+                    <div class="col-md-6">
+                        <img [src]="selectedProduct.image" class="img-fluid mb-3 w-50" 
+                            style="background-color: white; padding: 15px;" alt="{{ selectedProduct.title }}">
+                        <p style="background-color: white; padding: 10px;"> <span class="azul"> Descripcion:</span> <br> {{ selectedProduct.description }}</p>
+                    </div>
+                    <div class="col-md-6">
+                        <div style="background-color: white; padding: 10px;">
+                            <h5 style="background-color: white; padding: 10px; border-bottom: 2px solid #ddd;">{{
+                                selectedProduct.title }}</h5>
+                            <p class="azul"><strong>Categoría:</strong> <span style="color: black;"> {{
+                                    selectedProduct.category | uppercase }}</span></p>
+                        </div>
+                        <div style="background-color: white; padding: 0 10px 10px 10px; margin-top: 5px; ">
+                            <p class="azul"><strong>Precio:</strong> <span style="color: black;"> {{
+                                    selectedProduct.price | currency }}</span></p>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer d-flex flex-column">
+                <button class="btn btn-success w-100" (click)="getProductDetails(selectedProduct.id)"
+                    data-bs-toggle="modal" data-bs-target="#editProductModal">Editar</button>
+                <button class="btn btn-danger w-100" (click)="deleteProduct(selectedProduct.id)"
+                    data-bs-dismiss="modal">Eliminar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal para editar producto -->
+<div class="modal fade" id="editProductModal" tabindex="-1" aria-labelledby="editProductModalLabel" aria-hidden="true">
+    <div class="modal-dialog" style="margin-left: 100px;">
+        <div class="modal-content" style="width: 1100px; margin-right: -100px;">
+            <div class="modal-header">
+                <h5 class="modal-title" id="editProductModalLabel">Editar Producto</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body" *ngIf="selectedProduct">
+                <form>
+                    <div class="mb-3">
+                        <label for="editTitle" class="form-label">Título</label>
+                        <input type="text" class="form-control" id="editTitle" [(ngModel)]="selectedProduct.title"
+                            name="title">
+                    </div>
+                    <div class="mb-3">
+                        <label for="editPrice" class="form-label">Precio</label>
+                        <input type="number" class="form-control" id="editPrice" [(ngModel)]="selectedProduct.price"
+                            name="price">
+                    </div>
+                    <div class="mb-3">
+                        <label for="editDescription" class="form-label">Descripción</label>
+                        <textarea class="form-control" id="editDescription" [(ngModel)]="selectedProduct.description"
+                            name="description"></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label for="editImage" class="form-label">URL de la Imagen</label>
+                        <input type="text" class="form-control" id="editImage" [(ngModel)]="selectedProduct.image"
+                            name="image">
+                    </div>
+                    <div class="mb-3">
+                        <label for="editCategory" class="form-label">Categoría</label>
+                        <input type="text" class="form-control" id="editCategory" [(ngModel)]="selectedProduct.category"
+                            name="category">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer d-flex flex-column">
+                <button type="button" class="btn btn-primary w-100" (click)="editProduct()"
+                    data-bs-dismiss="modal">Guardar Cambios</button>
+                <button type="button" class="btn btn-secondary w-100" data-bs-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal para agregar producto -->
+<div class="modal fade" id="addProductModal" tabindex="-1" aria-labelledby="addProductModalLabel" aria-hidden="true">
+    <div class="modal-dialog" style="margin-left: 100px;">
+        <div class="modal-content" style="width: 1100px; margin-right: -100px;">
+            <div class="modal-header">
+                <h5 class="modal-title w-100 text-center" id="addProductModalLabel" style="color: #0D6EFD;">Agregar
+                    Producto</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="mb-3">
+                        <label for="addTitle" class="form-label azul">Nombre</label>
+                        <input type="text" class="form-control" id="addTitle" [(ngModel)]="newProduct.title"
+                            name="title">
+                    </div>
+                    <div class="mb-3">
+                        <label for="addImage" class="form-label azul">Imagen(URL)</label>
+                        <input type="text" class="form-control" id="addImage" [(ngModel)]="newProduct.image"
+                            name="image">
+                    </div>
+                    <div class="mb-3">
+                        <label for="addCategory" class="form-label azul">Categoría</label>
+                        <select id="addCategory" class="form-select" [(ngModel)]="newProduct.category" name="category">
+                            <option *ngFor="let category of categories" [value]="category">{{ category }}</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="addPrice" class="form-label azul">Precio</label>
+                        <input type="number" class="form-control" id="addPrice" [(ngModel)]="newProduct.price"
+                            name="price">
+                    </div>
+                    <div class="mb-3">
+                        <label for="addDescription" class="form-label azul">Descripción</label>
+                        <textarea class="form-control" id="addDescription" [(ngModel)]="newProduct.description"
+                            name="description"></textarea>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer d-flex flex-column">
+                <button type="button" class="btn btn-primary w-100" (click)="addProduct()"
+                    data-bs-dismiss="modal">Agregar Producto</button>
+                <button type="button" class="btn btn-secondary mb-2 w-100" data-bs-dismiss="modal">Cerrar</button>
+
+            </div>
+        </div>
+    </div>
+</div>

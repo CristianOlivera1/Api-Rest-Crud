@@ -1,0 +1,73 @@
+<div class="container">
+  <div class="search-container text-center justify-content-center mt-5">
+    <h2>Busca tu heroe favorito</h2>
+    <p>Busca tu heroe favorito en la api de marvel mira el mensaje que tiene para ti :</p>
+  </div>
+  <div class="search-container d-flex justify-content-center mt-5" style="width: 100%;">
+      <input type="text" [(ngModel)]="heroeName" id="search-input" placeholder="Buscar heroe" required (keydown.enter)="searchHeroe()" style="flex: 1;">
+      <button (click)="searchHeroe()" id="search-button" class="btn btn-outline-dark ms-3">Buscar</button>
+      <button type="button" class="btn btn-outline-dark ms-3" data-bs-toggle="modal" data-bs-target="#addHeroeModal">Agregar</button>
+
+  </div>
+
+  <div *ngIf="errorMessage" class="text-center mt-5">
+    <h4>{{ errorMessage }}</h4>
+  </div>
+
+  <div class="row mt-5">
+    <div *ngFor="let hero of heroes" class="col-md-4 mb-4">
+      <div class="card">
+        <img [src]="hero.thumbnail.path + '.' + hero.thumbnail.extension" class="card-img-top" alt="{{ hero.name }}">
+        <div class="card-body">
+          <h5 class="card-title">{{ hero.name }}</h5>
+          <p class="card-text">Número de cómics: {{ hero.comics.available }}</p>
+          <p class="card-text">{{ hero.modified | date:'dd-MM-yyyy HH:mm:ss' }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal para agregar héroe -->
+  <div class="modal fade" id="addHeroeModal" tabindex="-1" aria-labelledby="addHeroeModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="addHeroeModalLabel">Agregar Héroe</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form>
+            <div class="mb-3">
+              <label for="heroeName" class="form-label">Nombre</label>
+              <input type="text" class="form-control" id="heroeName" [(ngModel)]="newHeroe.name" name="name">
+            </div>
+            <div class="mb-3">
+              <label for="heroeDescription" class="form-label">Descripción</label>
+              <input type="text" class="form-control" id="heroeDescription" [(ngModel)]="newHeroe.description" name="description">
+            </div>
+            <div class="mb-3">
+              <label for="heroeModified" class="form-label">Modificada</label>
+              <input type="date" class="form-control" id="heroeModified" [(ngModel)]="newHeroe.modified" name="modified">
+            </div>
+            <div class="mb-3">
+              <label for="heroeThumbnailPath" class="form-label">URL de la Imagen</label>
+              <input type="text" class="form-control" id="heroeThumbnailPath" [(ngModel)]="newHeroe.thumbnail.path" name="thumbnailPath">
+            </div>
+            <div class="mb-3">
+              <label for="heroeThumbnailExtension" class="form-label">Extensión de la Imagen</label>
+              <input type="text" class="form-control" id="heroeThumbnailExtension" [(ngModel)]="newHeroe.thumbnail.extension" name="thumbnailExtension">
+            </div>
+            <div class="mb-3">
+              <label for="heroeComics" class="form-label">Número de Cómics</label>
+              <input type="text" class="form-control" id="heroeComics" [(ngModel)]="newHeroe.comics.available" name="comics">
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+          <button type="button" class="btn btn-primary" (click)="addHeroe()" data-bs-dismiss="modal">Agregar Héroe</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,58 @@
+<div class="container" style="margin-top: 7px;">
+    <div class="card bg-dark text-white">
+      <div class="card-header">
+        <h5>Registrar Producto</h5>
+      </div>
+      <div class="card-body">
+        <form [formGroup]="frmProductInsert">
+          <div class="row">
+            <div class="col-md-3 mb-3">
+              <label for="idCategory" class="form-label">Categoría</label>
+              <select formControlName="idCategory" class="form-select" id="idCategory">
+                <option value="" disabled selected>Seleccione una opción</option>
+                <option *ngFor="let category of categories" [value]="category.idcategory">{{ category.name }}</option>
+              </select>
+              <div *ngIf="idCategoryFb.touched && idCategoryFb.errors?.['required']" class="divError">Este campo es requerido.</div>
+            </div>
+            <div class="col-md-3 mb-3">
+              <label for="name" class="form-label">Nombre</label>
+              <input type="text" formControlName="name" class="form-control" id="name" placeholder="Obligatorio">
+              <div *ngIf="nameFb.touched && nameFb.errors?.['required']" class="divError">Este campo es requerido.</div>
+            </div>
+            <div class="col-md-3 mb-3">
+              <label for="barcode" class="form-label">Código de Barras</label>
+              <input type="text" formControlName="barcode" class="form-control" id="barcode" placeholder="Obligatorio">
+              <div *ngIf="barcodeFb.touched && barcodeFb.errors?.['required']" class="divError">Este campo es requerido.</div>
+            </div>
+            <div class="col-md-3 mb-3">
+              <label for="sale_price" class="form-label">Precio de Venta</label>
+              <input type="number" formControlName="sale_price" class="form-control" id="sale_price" placeholder="Obligatorio">
+              <div *ngIf="salePriceFb.touched && salePriceFb.errors?.['required']" class="divError">Este campo es requerido.</div>
+              <div *ngIf="salePriceFb.touched && salePriceFb.errors?.['min']" class="divError">El precio de venta debe ser mayor o igual a 0.</div>
+            </div>
+            <div class="col-md-3 mb-3">
+              <label for="stock" class="form-label">Stock</label>
+              <input type="number" formControlName="stock" class="form-control" id="stock" placeholder="Obligatorio">
+              <div *ngIf="stockFb.touched && stockFb.errors?.['required']" class="divError">Este campo es requerido.</div>
+              <div *ngIf="stockFb.touched && stockFb.errors?.['min']" class="divError">El stock debe ser mayor o igual a 0.</div>
+            </div>
+            <div class="col-md-3 mb-3">
+              <label for="state" class="form-label">Estado</label>
+              <select formControlName="state" class="form-select" id="state">
+                <option value="" disabled selected>Seleccione una opción</option>
+                <option value="true">Activo</option>
+                <option value="false">Inactivo</option>
+              </select>
+              <div *ngIf="stateFb.touched && stateFb.errors?.['required']" class="divError">Este campo es requerido.</div>
+            </div>
+          </div>
+          <hr>
+          <div class="d-flex justify-content-end">
+            <button type="submit" class="btn btn-primary" (click)="save()">Registrar Producto</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  
+  <app-notify [type]="typeResponse" [listMessage]="listMessageResponse"></app-notify>

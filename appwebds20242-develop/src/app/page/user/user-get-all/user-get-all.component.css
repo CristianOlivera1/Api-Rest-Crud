@@ -1,0 +1,43 @@
+.card {
+  background-color: #1f1f1f;
+  border: 1px solid #333;
+}
+
+.card-header {
+  background-color: #525252;
+  border-bottom: 1px solid #444;
+}
+
+.table {
+  color: #ffffff;
+}
+
+.table thead th {
+  background-color: #474747;
+  border-bottom: 1px solid #444;
+}
+
+.table tbody tr:hover {
+  background-color: #333;
+}
+
+.btn-delete {
+  color: #f00e0e;
+}
+
+.btn-delete:hover {
+  background-color: rgba(219, 78, 78, 0.5);
+}
+
+.btn-edit {
+  color: #4cdf2e;
+}
+
+.btn-edit:hover {
+  background-color: rgba(76, 223, 46, 0.5);
+}
+
+.d-flex {
+  display: flex;
+  align-items: center;
+}
