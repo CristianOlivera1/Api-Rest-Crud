@@ -35,6 +35,8 @@ export class AppComponent {
 		  console.log('Sesión cerrada correctamente:', response);
 		  localStorage.removeItem('sessionIdUser');
 		  localStorage.removeItem('sessionNameUser');
+		  localStorage.removeItem('sessionJwtToken');
+
 		  this.router.navigate(['/user/login']).then(() => {
 			window.location.reload();
 		  });
