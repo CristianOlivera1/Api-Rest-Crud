@@ -19,16 +19,21 @@ export class GetallActividadComponent {
   estadoFilter: string = '';
   typeResponse: string = '';
   listMessageResponse: string[] = [];
-  
-  constructor(
-    private actividadService: ActividadService
-  ) {}
+  currentPage: number = 1;
+  totalPages: number = 0;
+  pageSize: number = 10;
+
+  constructor(private actividadService: ActividadService) {}
 
   ngOnInit() {
-    this.actividadService.getAll().subscribe({
+    this.loadActividades(this.currentPage);
+  }
+
+  loadActividades(page: number): void {
+    this.actividadService.getAll(page, this.pageSize).subscribe({
       next: (response: any) => {
-        this.listActividad = response.dto.listActividad;
-        this.sortByFechaInicio();
+        this.listActividad = response.data;
+        this.totalPages = response.totalPages;
         this.filteredListActividad = this.listActividad;
         console.log(this.listActividad);
       },
@@ -36,10 +41,6 @@ export class GetallActividadComponent {
         console.log(error);
       }
     });
-  }
-
-  sortByFechaInicio(): void {
-    this.listActividad.sort((a, b) => new Date(b.fechaInicio).getTime() - new Date(a.fechaInicio).getTime());
   }
 
   filterByEstado(): void {
@@ -67,5 +68,12 @@ export class GetallActividadComponent {
         console.log(error);
       }
     });
+  }
+
+  goToPage(page: number): void {
+    if (page >= 1 && page <= this.totalPages) {
+      this.currentPage = page;
+      this.loadActividades(this.currentPage);
+    }
   }
 }

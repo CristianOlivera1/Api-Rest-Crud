@@ -4,7 +4,7 @@
       <h5>Lista de Usuarios</h5>
     </div>
     <div class="card-body" style="min-height: 400px;">
-      <table class="table table-dark table-striped table-hover">
+      <table class="table table-dark table-striped table-hover table-bordered dt-responsive nowrap align-middle" style="width:100%">
         <thead>
           <tr>
             <th>N</th>
@@ -75,7 +75,7 @@
           </tr>
         </tbody>
       </table>
-      <h4 *ngIf="userName === 'admin'" class="opacity-25 text-center justify-content-center mt-5">Solo tienes permisos de lectura en usuarios &#58;&#40;</h4>
+      <h5 *ngIf="userName === 'admin'" class="opacity-25 text-center justify-content-center mt-5"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><g fill="none" stroke="#ddd" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path stroke-dasharray="64" stroke-dashoffset="64" d="M12 3l9 17h-18l9 -17Z"><animate fill="freeze" attributeName="stroke-dashoffset" dur="0.6s" values="64;0"/></path><path stroke-dasharray="6" stroke-dashoffset="6" d="M12 10v4"><animate fill="freeze" attributeName="stroke-dashoffset" begin="0.6s" dur="0.2s" values="6;0"/></path><path stroke-dasharray="2" stroke-dashoffset="2" d="M12 17v0.01"><animate fill="freeze" attributeName="stroke-dashoffset" begin="0.8s" dur="0.2s" values="2;0"/></path></g></svg> Solo tienes permisos de lectura en usuarios &#58;&#40;</h5>
     </div>
   </div>
 </div>

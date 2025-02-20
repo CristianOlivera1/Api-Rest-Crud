@@ -5,3 +5,9 @@
 .btn-edit{
     background-color: rgba(76, 223, 46, 0.315);
 }
+
+.card-body{
+    text-align: center;
+    overflow-x: auto;
+    width: 100%;
+  }

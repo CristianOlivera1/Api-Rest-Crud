@@ -35,7 +35,7 @@ export class InsertComponent {
       firstName: ['', [Validators.required]],
       surName: ['', [Validators.required]],
       dni: ['', [Validators.required, CustomValidators.dniValidator()]],
-      gender: ['', [Validators.required]],
+      gender: ['true', [Validators.required]],
       phone: ['', [Validators.required, CustomValidators.phoneValidator()]],
       address: ['', [Validators.required]],
       birthDate: ['', [Validators.required]],
@@ -69,6 +69,7 @@ export class InsertComponent {
         switch(response.mo.type) {
           case 'success':
             this.frmClientInsert.reset();
+            this.frmClientInsert.controls['gender'].setValue('true');
             break;
         }
         console.log(response);

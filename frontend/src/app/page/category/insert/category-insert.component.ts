@@ -32,7 +32,7 @@ export class CategoryInsertComponent {
     this.frmCategoryInsert = this.formBuilder.group({
       name: ['', [Validators.required]],
       description: ['', [Validators.required]],
-      state: ['', [Validators.required]]
+      state: ['1', [Validators.required]]
     });
   }
 
@@ -57,7 +57,7 @@ export class CategoryInsertComponent {
         switch(response.mo.type) {
 					case 'success':
 						this.frmCategoryInsert.reset();
-
+            this.frmCategoryInsert.controls['state'].setValue('1');
 						break;
 				}
         console.log(response);

@@ -25,6 +25,11 @@ a.disabled {
 .table tbody tr:hover {
   background-color: #333;
 }
+.card-body{
+  text-align: center;
+  overflow-x: auto;
+  width: 100%;
+}
 
 .btn-delete {
   color: #f00e0e;

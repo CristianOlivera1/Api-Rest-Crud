@@ -5,8 +5,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
-
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import codksv.apirfds20242.Dto.DtoActividad;
@@ -75,26 +77,29 @@ public class BusinessActividad {
         return listDtoActividad;
     }
 
-    public List<DtoActividad> getAll() {
+   public List<DtoActividad> getAll(int page, int size) {
+    Pageable pageable = PageRequest.of(page - 1, size);
+    Page<TActividad> pageTActividad = repoActividad.findAll(pageable);
+    List<DtoActividad> listDtoActividad = new ArrayList<>();
 
-        List<TActividad> listTActividad = repoActividad.findAll();
-        List<DtoActividad> listDtoActividad = new ArrayList<>();
+    for (TActividad item : pageTActividad.getContent()) {
+        DtoActividad dtoActividad = new DtoActividad();
 
-        for (TActividad item : listTActividad) {
-            DtoActividad dtoActividad = new DtoActividad();
+        dtoActividad.setIdActividad(item.getIdActividad());
+        dtoActividad.setActividad(item.getActividad());
+        dtoActividad.setFechaInicio(item.getFechaInicio());
+        dtoActividad.setFechaFin(item.getFechaFin());
+        dtoActividad.setEstado(item.isEstado());
 
-            dtoActividad.setIdActividad(item.getIdActividad());
-            dtoActividad.setActividad(item.getActividad());
-            dtoActividad.setFechaInicio(item.getFechaInicio());
-
-            dtoActividad.setFechaFin(item.getFechaFin());
-            dtoActividad.setEstado(item.isEstado());
-
-            listDtoActividad.add(dtoActividad);
-        }
-
-        return listDtoActividad;
+        listDtoActividad.add(dtoActividad);
     }
+
+    return listDtoActividad;
+}
+
+public int countAll() {
+    return (int) repoActividad.count();
+}
 
     @Transactional
     public boolean update(DtoActividad dtoActividad) {

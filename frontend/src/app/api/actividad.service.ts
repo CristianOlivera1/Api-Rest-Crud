@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
@@ -16,8 +16,9 @@ export class ActividadService {
 		return this.httpClient.post(`${this.apiUrl}/actividad/insert`, formData);
 	}
 
-	public getAll(): Observable<any> {
-		return this.httpClient.get(`${this.apiUrl}/actividad/getall`);
+	public getAll(page: number, size: number): Observable<any> {
+		let params = new HttpParams().set('page', page.toString()).set('size', size.toString());
+		return this.httpClient.get(`${this.apiUrl}/actividad/getall`, { params });
 	}
 
 	public delete(idActividad: string): Observable<any> {

@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import codksv.apirfds20242.Business.BusinessActividad;
@@ -121,31 +122,34 @@ public class Activi {
 	}
 
 	@GetMapping(path = "getall")
-	public ResponseEntity<ResponseGetAll> getAll() {
-		ResponseGetAll responseGetAll = new ResponseGetAll();
+public ResponseEntity<ResponseGetAll> getAll(@RequestParam int page, @RequestParam int size) {
+    ResponseGetAll responseGetAll = new ResponseGetAll();
 
-		try {
-			List<DtoActividad> listDtoActividad = businessActividad.getAll();
-			
-			for (DtoActividad item : listDtoActividad) {
-				Map<String, Object> map = new HashMap<>();
-	
-				map.put("idActividad", item.getIdActividad());
-				map.put("actividad", item.getActividad());
-				map.put("fechaInicio", item.getFechaInicio());
-				map.put("fechaFin", item.getFechaFin());
-				map.put("estado", item.isEstado());
-	
-				responseGetAll.dto.listActividad.add(map);
-				responseGetAll.mo.setSuccess();
-			}
-		} catch (Exception e) {
-			responseGetAll.mo.addResponseMesssage("Ocurrió un error inesperado.");
-			responseGetAll.mo.setException();
-		}
+    try {
+        List<DtoActividad> listDtoActividad = businessActividad.getAll(page, size);
+        int totalRecords = businessActividad.countAll();
 
-		return new ResponseEntity<>(responseGetAll, HttpStatus.OK);
-	}
+        for (DtoActividad item : listDtoActividad) {
+            Map<String, Object> map = new HashMap<>();
+
+            map.put("idActividad", item.getIdActividad());
+            map.put("actividad", item.getActividad());
+            map.put("fechaInicio", item.getFechaInicio());
+            map.put("fechaFin", item.getFechaFin());
+            map.put("estado", item.isEstado());
+
+            responseGetAll.dto.listActividad.add(map);
+        }
+
+        responseGetAll.mo.setSuccess();
+        responseGetAll.totalPages = (int) Math.ceil((double) totalRecords / size);
+    } catch (Exception e) {
+        responseGetAll.mo.addResponseMesssage("Ocurrió un error inesperado.");
+        responseGetAll.mo.setException();
+    }
+
+    return new ResponseEntity<>(responseGetAll, HttpStatus.OK);
+}
 
 	@PutMapping(path = "update", consumes = { "multipart/form-data" })
 	public ResponseEntity<ResponseUpdate> actionUpdate(@ModelAttribute RequestUpdate requestUpdate) {

@@ -32,7 +32,7 @@ export class InsertActividadComponent {
       actividad: ['', [Validators.required]],
       fechaInicio: ['', [Validators.required]],
       fechaFin: ['', [Validators.required]],
-      estado: ['true', [Validators.required]] // Valor por defecto "Activo"
+      estado: ['true', [Validators.required]] 
     });
   }
 
@@ -55,7 +55,7 @@ export class InsertActividadComponent {
         this.listMessageResponse = response.mo.listMessage;
         if (response.mo.type === 'success') {
           this.frmActividadInsert.reset();
-          this.frmActividadInsert.patchValue({ estado: 'true' }); // Restablecer el valor por defecto
+          this.frmActividadInsert.patchValue({ estado: 'true' }); 
         }
         console.log(response);
       },

@@ -6,3 +6,9 @@ tr td{
     width: 200px;
     max-width: 100px;
 }
+
+.card-body{
+    text-align: center;
+    overflow-x: auto;
+    width: 100%;
+  }

@@ -11,4 +11,5 @@ public class ResponseGetAll extends ResponseGeneric {
 	}
 
 	public Response dto = new Response();
+	public int totalPages;
 }
