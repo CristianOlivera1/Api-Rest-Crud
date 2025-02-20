@@ -38,8 +38,6 @@ public class BusinessUser {
     
         repoUser.save(tUser);
     }
-
-    
     
     //esto es para validar el usuario en el formulario de login
     public boolean nameUserExists(String nameUser) {

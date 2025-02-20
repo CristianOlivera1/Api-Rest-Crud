@@ -122,34 +122,34 @@ public class Activi {
 	}
 
 	@GetMapping(path = "getall")
-public ResponseEntity<ResponseGetAll> getAll(@RequestParam int page, @RequestParam int size) {
-    ResponseGetAll responseGetAll = new ResponseGetAll();
-
-    try {
-        List<DtoActividad> listDtoActividad = businessActividad.getAll(page, size);
-        int totalRecords = businessActividad.countAll();
-
-        for (DtoActividad item : listDtoActividad) {
-            Map<String, Object> map = new HashMap<>();
-
-            map.put("idActividad", item.getIdActividad());
-            map.put("actividad", item.getActividad());
-            map.put("fechaInicio", item.getFechaInicio());
-            map.put("fechaFin", item.getFechaFin());
-            map.put("estado", item.isEstado());
-
-            responseGetAll.dto.listActividad.add(map);
-        }
-
-        responseGetAll.mo.setSuccess();
-        responseGetAll.totalPages = (int) Math.ceil((double) totalRecords / size);
-    } catch (Exception e) {
-        responseGetAll.mo.addResponseMesssage("Ocurrió un error inesperado.");
-        responseGetAll.mo.setException();
-    }
-
-    return new ResponseEntity<>(responseGetAll, HttpStatus.OK);
-}
+	public ResponseEntity<ResponseGetAll> getAll(@RequestParam int page, @RequestParam int size) {
+		ResponseGetAll responseGetAll = new ResponseGetAll();
+	
+		try {
+			List<DtoActividad> listDtoActividad = businessActividad.getAll(page, size);
+			int totalRecords = businessActividad.countAll();
+	
+			for (DtoActividad item : listDtoActividad) {
+				Map<String, Object> map = new HashMap<>();
+	
+				map.put("idActividad", item.getIdActividad());
+				map.put("actividad", item.getActividad());
+				map.put("fechaInicio", item.getFechaInicio());
+				map.put("fechaFin", item.getFechaFin());
+				map.put("estado", item.isEstado());
+	
+				responseGetAll.dto.listActividad.add(map);
+			}
+	
+			responseGetAll.mo.setSuccess();
+			responseGetAll.totalPages = (int) Math.ceil((double) totalRecords / size);
+		} catch (Exception e) {
+			responseGetAll.mo.addResponseMesssage("Ocurrió un error inesperado.");
+			responseGetAll.mo.setException();
+		}
+	
+		return new ResponseEntity<>(responseGetAll, HttpStatus.OK);
+	}
 
 	@PutMapping(path = "update", consumes = { "multipart/form-data" })
 	public ResponseEntity<ResponseUpdate> actionUpdate(@ModelAttribute RequestUpdate requestUpdate) {

@@ -76,30 +76,29 @@ public class BusinessActividad {
 
         return listDtoActividad;
     }
-
-   public List<DtoActividad> getAll(int page, int size) {
-    Pageable pageable = PageRequest.of(page - 1, size);
-    Page<TActividad> pageTActividad = repoActividad.findAll(pageable);
-    List<DtoActividad> listDtoActividad = new ArrayList<>();
-
-    for (TActividad item : pageTActividad.getContent()) {
-        DtoActividad dtoActividad = new DtoActividad();
-
-        dtoActividad.setIdActividad(item.getIdActividad());
-        dtoActividad.setActividad(item.getActividad());
-        dtoActividad.setFechaInicio(item.getFechaInicio());
-        dtoActividad.setFechaFin(item.getFechaFin());
-        dtoActividad.setEstado(item.isEstado());
-
-        listDtoActividad.add(dtoActividad);
+    public List<DtoActividad> getAll(int page, int size) {
+        Pageable pageable = PageRequest.of(page - 1, size);
+        Page<TActividad> pageTActividad = repoActividad.findAll(pageable);
+        List<DtoActividad> listDtoActividad = new ArrayList<>();
+    
+        for (TActividad item : pageTActividad.getContent()) {
+            DtoActividad dtoActividad = new DtoActividad();
+    
+            dtoActividad.setIdActividad(item.getIdActividad());
+            dtoActividad.setActividad(item.getActividad());
+            dtoActividad.setFechaInicio(item.getFechaInicio());
+            dtoActividad.setFechaFin(item.getFechaFin());
+            dtoActividad.setEstado(item.isEstado());
+    
+            listDtoActividad.add(dtoActividad);
+        }
+    
+        return listDtoActividad;
     }
-
-    return listDtoActividad;
-}
-
-public int countAll() {
-    return (int) repoActividad.count();
-}
+    
+    public int countAll() {
+        return (int) repoActividad.count();
+    }
 
     @Transactional
     public boolean update(DtoActividad dtoActividad) {

@@ -19,7 +19,7 @@ export class ActividadService {
 	public getAll(page: number, size: number): Observable<any> {
 		let params = new HttpParams().set('page', page.toString()).set('size', size.toString());
 		return this.httpClient.get(`${this.apiUrl}/actividad/getall`, { params });
-	}
+	  }
 
 	public delete(idActividad: string): Observable<any> {
 		return this.httpClient.delete(`${this.apiUrl}/actividad/delete/${idActividad}`);

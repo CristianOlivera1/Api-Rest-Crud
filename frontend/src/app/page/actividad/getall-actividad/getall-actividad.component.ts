@@ -32,10 +32,14 @@ export class GetallActividadComponent implements OnInit {
   loadActividades(page: number): void {
     this.actividadService.getAll(page, this.pageSize).subscribe({
       next: (response: any) => {
-        this.listActividad = response.data;
-        this.totalPages = response.totalPages;
-        this.filteredListActividad = this.listActividad;
-        console.log(this.listActividad);
+        if (response && response.dto && response.dto.listActividad) {
+          this.listActividad = response.dto.listActividad;
+          this.totalPages = response.totalPages;
+          this.filteredListActividad = this.listActividad;
+          console.log(this.listActividad);
+        } else {
+          console.error('Respuesta de la API no válida:', response);
+        }
       },
       error: (error: any) => {
         console.log(error);
