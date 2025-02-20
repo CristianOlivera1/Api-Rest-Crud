@@ -46,7 +46,7 @@ export class UserService {
     const headers = new HttpHeaders({ 'Content-Type': 'application/x-www-form-urlencoded' });
     const body = new URLSearchParams();
     body.set('idUser', idUser);
-  
+
     return this.httpClient.post(`${this.apiUrl}/user/logout`, body.toString(), { headers });
   }
 

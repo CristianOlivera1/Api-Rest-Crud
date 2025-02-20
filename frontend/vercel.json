@@ -1,5 +1,6 @@
 {
   "rewrites": [
-    { "source": "/(.*)", "destination": "/user/login" }
+    { "source": "/(.*)", "destination": "/user/login" },
+    { "source": "/api/(.*)", "destination": "https://gateway.marvel.com/api/$1" }
   ]
   }

@@ -96,12 +96,9 @@ public class UserController {
 	public ResponseEntity<ResponseGeneric> logout(@RequestParam String idUser) {
 		ResponseGeneric response = new ResponseGeneric();
 		try {
+			// Permitir logout incluso si el usuario ya eliminó su sesión
 			boolean loggedOut = businessUser.logout(idUser);
-			if (!loggedOut) {
-				response.mo.addResponseMesssage("No se encontró el usuario para cerrar sesión.");
-				response.mo.setError();
-				return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);
-			}
+	
 			response.mo.addResponseMesssage("Cierre de sesión realizado correctamente");
 			response.mo.setSuccess();
 			return new ResponseEntity<>(response, HttpStatus.OK);
@@ -112,6 +109,7 @@ public class UserController {
 			return new ResponseEntity<>(response, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
+	
 
 	//mostrar los datos al ir de una ventana a otra en el frontend
 	  @GetMapping("/get/{idUser}")

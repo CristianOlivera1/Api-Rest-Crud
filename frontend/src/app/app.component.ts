@@ -13,27 +13,47 @@ import { UserService } from './api/user.service';
 })
 export class AppComponent {
 	title = 'appwebds20242';
-	user: any = {};
-	userName:String="";
-	constructor(private authService: UserService, private router: Router) {}
+  user: any = {};
+  userName: String = "";
 
-	ngOnInit() {
-		this.userName = localStorage.getItem('sessionNameUser') || '';
-	}
-	public existsLogin() {
-		const sessionIdUser = localStorage.getItem('sessionIdUser');
-		return sessionIdUser !== undefined && sessionIdUser !== null && sessionIdUser !== 'undefined';
-	  }
+  constructor(private authService: UserService, private router: Router) {}
 
-	  logout(): void {
-		const sessionIdUser = localStorage.getItem('sessionIdUser');
-		if (sessionIdUser) {
-		  this.authService.logout(sessionIdUser).subscribe(() => {
-			localStorage.removeItem('sessionJwtToken');
-			localStorage.removeItem('sessionIdUser');
-			localStorage.removeItem('sessionNameUser');
-			this.router.navigate(['/user/login']);
+  ngOnInit() {
+    this.userName = localStorage.getItem('sessionNameUser') || '';
+  }
+
+  public existsLogin() {
+	const sessionIdUser = localStorage.getItem('sessionIdUser');
+	return !!(sessionIdUser && sessionIdUser !== 'undefined' && sessionIdUser !== 'null');
+  }
+  logout(): void {
+	const sessionIdUser = localStorage.getItem('sessionIdUser');
+  
+	if (sessionIdUser) {
+	  this.authService.logout(sessionIdUser).subscribe({
+		next: () => {
+		  console.log('Sesión cerrada correctamente.');
+		},
+		error: (error) => {
+		  console.error('Error al cerrar sesión:', error);
+		},
+		complete: () => {
+		  // 🔥 FORZAR ELIMINACIÓN DE TODOS LOS DATOS
+		  localStorage.clear();
+  
+		  this.router.navigate(['/login'], { queryParams: { logout: new Date().getTime() } }).then(() => {
+			window.location.reload();
 		  });
 		}
-	  }
+	  });
+	} else {
+	  // 🔥 Si no hay sesión, igual limpiamos el localStorage
+	  localStorage.clear();
+	  this.router.navigate(['/login']).then(() => {
+		window.location.reload();
+	  });
+	}
+  }
+  
+  
 }
