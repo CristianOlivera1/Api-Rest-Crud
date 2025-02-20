@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { CategoryService } from '../../../api/category.service';
 import { NotifyComponent } from '../../../component/notify/notify.component';
@@ -13,7 +13,7 @@ import { FormsModule } from '@angular/forms';
   templateUrl: './getall-actividad.component.html',
   styleUrl: './getall-actividad.component.css'
 })
-export class GetallActividadComponent {
+export class GetallActividadComponent implements OnInit {
   listActividad: any[] = [];
   filteredListActividad: any[] = [];
   estadoFilter: string = '';
