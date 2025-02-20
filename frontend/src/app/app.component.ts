@@ -32,7 +32,7 @@ export class AppComponent {
 			localStorage.removeItem('sessionJwtToken');
 			localStorage.removeItem('sessionIdUser');
 			localStorage.removeItem('sessionNameUser');
-			this.router.navigate(['/login']);
+			this.router.navigate(['/user/login']);
 		  });
 		}
 	  }
