@@ -10,7 +10,7 @@ import { LoginuserComponent } from './page/user/loginuser/loginuser.component';
 import { UserGetAllComponent } from './page/user/user-get-all/user-get-all.component';
 import { UserInsertComponent } from './page/user/user-insert/user-insert.component';
 import { UserUpdateComponent } from './page/user/user-update/user-update.component';
-import { authGuard } from './guard/auth.guard';
+import { AuthGuard } from './guard/auth.guard';
 import { UpdateActividadComponent } from './page/actividad/update-actividad/update-actividad.component';
 import { GetallActividadComponent } from './page/actividad/getall-actividad/getall-actividad.component';
 import { InsertActividadComponent } from './page/actividad/insert-actividad/insert-actividad.component';
@@ -26,29 +26,29 @@ import { UpdateProductComponent } from './page/product/update-product/update-pro
 
 export const routes: Routes = [
 	{ path: '', redirectTo: 'user/getall', pathMatch: 'full' },
-	{ path: 'product/insert', component: InsertProductComponent, canActivate: [authGuard] },
-	{ path: 'product/getall', component: GetallProductComponent, canActivate: [authGuard] },
-	{ path: 'product/update/:id', component: UpdateProductComponent, canActivate: [authGuard] },
-	{ path: 'category/insert', component: CategoryInsertComponent, canActivate: [authGuard] },
-	{ path: 'category/getall', component: CategoryGetAllComponent, canActivate: [authGuard] },
-	{ path: 'category/update/:id', component: UpdateComponent, canActivate: [authGuard] },
-	{ path: 'client/getall', component: GetallComponent, canActivate: [authGuard] },
-	{ path: 'client/insert', component: InsertComponent, canActivate: [authGuard] },
-	{ path: 'client/update/:id', component: ClientUpdateComponent, canActivate: [authGuard] },
+	{ path: 'product/insert', component: InsertProductComponent, canActivate: [AuthGuard] },
+	{ path: 'product/getall', component: GetallProductComponent, canActivate: [AuthGuard] },
+	{ path: 'product/update/:id', component: UpdateProductComponent, canActivate: [AuthGuard] },
+	{ path: 'category/insert', component: CategoryInsertComponent, canActivate: [AuthGuard] },
+	{ path: 'category/getall', component: CategoryGetAllComponent, canActivate: [AuthGuard] },
+	{ path: 'category/update/:id', component: UpdateComponent, canActivate: [AuthGuard] },
+	{ path: 'client/getall', component: GetallComponent, canActivate: [AuthGuard] },
+	{ path: 'client/insert', component: InsertComponent, canActivate: [AuthGuard] },
+	{ path: 'client/update/:id', component: ClientUpdateComponent, canActivate: [AuthGuard] },
 	{ path: 'client/login', component: LoginComponent },
 	{ path: 'user/login', component: LoginuserComponent },
-	{ path: 'user/getall', component: UserGetAllComponent, canActivate: [authGuard] },
-	{ path: 'user/insert', component: UserInsertComponent, canActivate: [authGuard] },
-	{ path: 'user/update/:id', component: UserUpdateComponent, canActivate: [authGuard] },
-	{ path: 'actividad/getall', component: GetallActividadComponent, canActivate: [authGuard] },
-	{ path: 'actividad/insert', component: InsertActividadComponent, canActivate: [authGuard]},
-	{ path: 'actividad/update/:id', component: UpdateActividadComponent, canActivate: [authGuard]},
-	{ path: 'platzi/update/:id', component: PlatziUpdateComponent, canActivate: [authGuard]},
-	{ path: 'platzi/getall', component: PlatziGetallComponent, canActivate: [authGuard]},
-	{ path: 'platzi/insert', component: PlatziInsertComponent, canActivate: [authGuard]},
-	{ path: 'pokeapi/get', component: PokeGetComponent, canActivate: [authGuard]},
+	{ path: 'user/getall', component: UserGetAllComponent, canActivate: [AuthGuard] },
+	{ path: 'user/insert', component: UserInsertComponent, canActivate: [AuthGuard] },
+	{ path: 'user/update/:id', component: UserUpdateComponent, canActivate: [AuthGuard] },
+	{ path: 'actividad/getall', component: GetallActividadComponent, canActivate: [AuthGuard] },
+	{ path: 'actividad/insert', component: InsertActividadComponent, canActivate: [AuthGuard]},
+	{ path: 'actividad/update/:id', component: UpdateActividadComponent, canActivate: [AuthGuard]},
+	{ path: 'platzi/update/:id', component: PlatziUpdateComponent, canActivate: [AuthGuard]},
+	{ path: 'platzi/getall', component: PlatziGetallComponent, canActivate: [AuthGuard]},
+	{ path: 'platzi/insert', component: PlatziInsertComponent, canActivate: [AuthGuard]},
+	{ path: 'pokeapi/get', component: PokeGetComponent, canActivate: [AuthGuard]},
 	{ path: 'auth/login', component: LoginComponentFk},
-	{ path: 'auth/getall', component: GetAllProductsFkComponent, canActivate: [authGuard]},
+	{ path: 'auth/getall', component: GetAllProductsFkComponent, canActivate: [AuthGuard]},
 
 
 ];

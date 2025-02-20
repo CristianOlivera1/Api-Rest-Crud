@@ -6,7 +6,7 @@ import { Observable, retry } from 'rxjs';
     providedIn: 'root'
 })
 export class PokeApiService {
-        private baseUrl: string = '/api/v1/public/characters';
+        private baseUrl: string = 'https://gateway.marvel.com/api/v1/public/characters';
         private apiKey: string = '18fb7ecdf44b4742cda3c99aad7e47e0';
         private hash: string = '6d0e8376fdfb3bd21746121e2f0028d6';
         private ts: string = '1';

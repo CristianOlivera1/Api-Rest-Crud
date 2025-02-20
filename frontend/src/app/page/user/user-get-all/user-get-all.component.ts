@@ -16,12 +16,14 @@ export class UserGetAllComponent {
   listUser: any[] = [];
   typeResponse: string = '';
   listMessageResponse: string[] = [];
-  
+  userName: string = '';  
   constructor(
     private userService: UserService
   ) {}
 
   ngOnInit() {
+    this.userName = localStorage.getItem('sessionNameUser') || '';
+
     this.userService.getAll().subscribe({
       next: (response: any) => {
         this.listUser = response.dto.listUser;

@@ -1,18 +1,18 @@
-import { inject } from '@angular/core';
-import { CanActivateFn, Router } from '@angular/router';
+import { inject, Injectable } from '@angular/core';
+import { CanActivate, CanActivateFn, Router } from '@angular/router';
+@Injectable({
+  providedIn: 'root',  // 🔥 Esto evita que se necesite instanciar con "new"
+})
+export class AuthGuard implements CanActivate {
+  constructor(private router: Router) {}
 
-export const authGuard: CanActivateFn = (route, state) => {
-  // let existsLogin = localStorage.getItem('sessionIdUser') != undefined
-  // && localStorage.getItem('sessionIdUser') != null
-  // && localStorage.getItem('sessionIdUser') != 'undefined';
-
-  let existsLogin = localStorage.getItem('sessionJwtToken') !== null
-  && localStorage.getItem('sessionJwtToken') !== 'undefined';
-
-  if (!existsLogin) {
-    let router = inject(Router);
-    router.navigate(['user/login']);
-    return false;
+  canActivate(): boolean {
+    const sessionIdUser = localStorage.getItem('sessionIdUser');
+    if (!sessionIdUser) {
+      // 🔥 Si no hay sesión, redirigir al login
+      this.router.navigate(['/user/login']);
+      return false;
+    }
+    return true;
   }
-  return true;
-};
+}

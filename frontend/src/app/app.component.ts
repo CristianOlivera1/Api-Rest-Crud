@@ -21,39 +21,36 @@ export class AppComponent {
   ngOnInit() {
     this.userName = localStorage.getItem('sessionNameUser') || '';
   }
-
-  public existsLogin() {
+  public existsLogin(): boolean {
 	const sessionIdUser = localStorage.getItem('sessionIdUser');
-	return !!(sessionIdUser && sessionIdUser !== 'undefined' && sessionIdUser !== 'null');
+	return !!sessionIdUser;  // Retorna false si es null o undefined
   }
+  
   logout(): void {
 	const sessionIdUser = localStorage.getItem('sessionIdUser');
   
 	if (sessionIdUser) {
 	  this.authService.logout(sessionIdUser).subscribe({
-		next: () => {
-		  console.log('Sesión cerrada correctamente.');
+		next: (response) => {
+		  console.log('Sesión cerrada correctamente:', response);
+		  localStorage.removeItem('sessionIdUser');
+		  localStorage.removeItem('sessionNameUser');
+		  this.router.navigate(['/user/login']).then(() => {
+			window.location.reload();
+		  });
 		},
 		error: (error) => {
 		  console.error('Error al cerrar sesión:', error);
-		},
-		complete: () => {
-		  // 🔥 FORZAR ELIMINACIÓN DE TODOS LOS DATOS
-		  localStorage.clear();
-  
-		  this.router.navigate(['/login'], { queryParams: { logout: new Date().getTime() } }).then(() => {
-			window.location.reload();
-		  });
 		}
 	  });
 	} else {
-	  // 🔥 Si no hay sesión, igual limpiamos el localStorage
+	  console.warn('No hay sesión activa.');
+  
 	  localStorage.clear();
-	  this.router.navigate(['/login']).then(() => {
+	  this.router.navigate(['/user/login']).then(() => {
 		window.location.reload();
 	  });
 	}
   }
-  
   
 }

@@ -8,6 +8,11 @@
   border-bottom: 1px solid #444;
 }
 
+a.disabled {
+  pointer-events: none;
+  opacity: 0.5;
+}
+
 .table {
   color: #ffffff;
 }
