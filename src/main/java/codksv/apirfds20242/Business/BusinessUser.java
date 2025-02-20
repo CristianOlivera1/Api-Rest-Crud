@@ -137,7 +137,7 @@ public class BusinessUser {
 
     //mostrar actualizar
     @Transactional
-    public boolean update(DtoUser dtoUser) {
+    public boolean update(DtoUser dtoUser) throws Exception {
 
         Optional<TUser> tUsers = repoUser.findById(dtoUser.getIdUser());
 
@@ -147,7 +147,7 @@ public class BusinessUser {
 
         TUser tUser = tUsers.get();
         tUser.setNameUser(dtoUser.getNameUser());
-        tUser.setPassword(dtoUser.getPassword());
+        tUser.setPassword(AesUtil.encrypt(dtoUser.getPassword()));
         tUser.setUpdatedAt(new Date());
 
         repoUser.save(tUser);

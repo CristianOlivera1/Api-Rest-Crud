@@ -32,6 +32,22 @@ body {
   }
 }
 
+form{
+  z-index: 1;
+}
+
+.fondo {
+  position: absolute;
+  top: -150px;
+  left: 190px;
+  width: 550px; 
+  height: auto; 
+  overflow: hidden;
+  z-index: 0;
+  transform: rotate(90deg);
+  opacity: 50%;
+}
+
 .github-corner svg {
   border-bottom: 0;
   position: fixed;
@@ -79,4 +95,14 @@ body {
 
 .shadow-light {
   box-shadow: -200px -171px 157px rgba(255, 255, 255, 0.089);
+}
+
+@media (max-width:768px){
+  .fondo{
+    width: 70%;
+    height: auto;
+    left: 33%;
+    top: 60px;
+    transform: translate(-25%, -50%);
+  }
 }

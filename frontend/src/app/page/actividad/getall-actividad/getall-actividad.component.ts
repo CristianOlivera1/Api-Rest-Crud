@@ -36,7 +36,7 @@ export class GetallActividadComponent implements OnInit {
           this.listActividad = response.dto.listActividad;
           this.totalPages = response.totalPages;
           this.filteredListActividad = this.listActividad;
-          console.log(this.listActividad);
+          // console.log(this.listActividad);
         } else {
           console.error('Respuesta de la API no válida:', response);
         }
@@ -64,7 +64,7 @@ export class GetallActividadComponent implements OnInit {
         switch(response.mo.type) {
           case 'success':
             this.listActividad = this.listActividad.filter(x => x.idActividad != idActividad);
-            this.filterByEstado(); // Actualizar la lista filtrada después de eliminar
+            this.filterByEstado();
             break;
         }
       },
