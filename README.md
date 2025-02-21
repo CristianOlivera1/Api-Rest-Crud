@@ -1,6 +1,6 @@
 # Aplicación Web con Login (Spring Boot + Angular)
 
-![Demostracion](https://github.com/CristianOlivera1/Resources-dev/blob/main/api-rest-crud/img/banner.png)
+![Demostracion](https://github.com/CristianOlivera1/Resources-dev/blob/main/api-rest-crud/img/banner-shotso.png)
 
 <div align="center">
     <img src="https://img.shields.io/badge/Java-32.9%25-brightgreen" alt="Java">
