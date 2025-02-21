@@ -26,7 +26,7 @@ export class AppComponent {
   
 	public existsLogin(): boolean {
 	  const sessionIdUser = localStorage.getItem('sessionIdUser');
-	  return !!sessionIdUser;  // Retorna false si es null o undefined
+	  return !!sessionIdUser;  
 	}
   
 	checkTokenValidity(): void {
