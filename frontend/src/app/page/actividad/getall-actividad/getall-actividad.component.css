@@ -3,3 +3,11 @@
     overflow-x: auto;
     width: 100%;
   }
+
+  .form-select {
+    background-color: #2c2c2c;
+    border: 1px solid #444;
+    color: #ffffff;
+    background-image: url('data:image/svg+xml;charset=US-ASCII,<svg xmlns="http://www.w3.org/2000/svg" width="4" height="5" viewBox="0 0 4 5"><path fill="%23ffffff" d="M2 5L0 3h4L2 5z"/></svg>');
+
+  }
