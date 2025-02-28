@@ -49,6 +49,5 @@ export const routes: Routes = [
 	{ path: 'pokeapi/get', component: PokeGetComponent, canActivate: [AuthGuard]},
 	{ path: 'auth/login', component: LoginComponentFk},
 	{ path: 'auth/getall', component: GetAllProductsFkComponent, canActivate: [AuthGuard]},
-
-
+	{ path: '**', redirectTo: 'user/getall' } ,
 ];
