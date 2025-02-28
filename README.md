@@ -84,7 +84,7 @@ Esta ubicado en una carpeta llamada `frontend` en la raiz
 
 7. Instala las dependencias del frontend:
     ```bash
-    cd ../frontend
+    cd frontend
     npm install
     ```
 8. Inicia el frontend:
