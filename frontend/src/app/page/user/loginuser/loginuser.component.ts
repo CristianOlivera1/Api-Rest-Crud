@@ -13,8 +13,8 @@ import { Router } from '@angular/router';
   styleUrl: './loginuser.component.css'
 })
 export class LoginuserComponent {
-  nameUser: string = '';
-  password: string = '';
+  nameUser: string = 'admin';
+  password: string = '12345678';
   errorMessage: string = '';
   passwordFieldType: string = 'password';
 
